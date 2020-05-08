@@ -1,0 +1,7 @@
+# Ignore all files
+*
+
+# Allow required files
+!package*.json
+!.babelrc
+!src
