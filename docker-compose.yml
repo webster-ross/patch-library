@@ -1,6 +1,4 @@
-version: "3"
+version: '3'
 services:
   api:
-    build: .
-    ports:
-      - "3000:3000"
+    image: patch:latest
