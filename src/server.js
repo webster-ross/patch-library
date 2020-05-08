@@ -1,5 +1,6 @@
 import express from 'express'
 import helmet from 'helmet'
+import books from './routers/books'
 
 export default () => {
   const app = express()
@@ -8,7 +9,8 @@ export default () => {
   app.use(helmet())
 
   // setup routes
-  app.get('/', (req, res) => res.send('Hello'))
+  app.get('/', (req, res) => res.send('Hello Patch'))
+  app.use('/books', books)
 
   // default not found handler
   app.use((req, res, next) => res.sendStatus(404))
