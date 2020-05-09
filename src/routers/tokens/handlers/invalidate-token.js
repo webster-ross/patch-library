@@ -14,8 +14,8 @@ export default async (req, res, next) => {
   // delete refresh token
   try {
     const {refresh_token: refreshToken} = req.body
-    const user = await redisClient.get(refreshToken)
-    if (user != req.user) return res.sendStatus(401)
+    const userId = await redisClient.get(refreshToken)
+    if (req.user == null || userId != req.user.id) return res.sendStatus(401)
     await redisClient.del(refreshToken)
     res.sendStatus(204)
   } catch(e) { return next(e) }

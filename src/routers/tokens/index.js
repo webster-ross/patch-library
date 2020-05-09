@@ -12,6 +12,6 @@ router.post('/', newTokenHandler)
 router.post('/refresh', refreshTokenValidator, refreshTokenHandler)
 
 // invalidate refresh token [DELETE /tokens]
-router.delete('/', authRoute, refreshTokenValidator, invalidateTokenHandler)
+router.delete('/', authRoute({user: 1, librarian: 1}), refreshTokenValidator, invalidateTokenHandler)
 
 export default router

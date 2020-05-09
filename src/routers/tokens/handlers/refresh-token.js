@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import {validationResult} from 'express-validator'
 import configs from '../../../configs'
+import pg from '../../../data/postgres'
 import redis from '../../../data/redis'
 
 // connect to redis
@@ -17,7 +18,9 @@ export default async (req, res, next) => {
   try {
     const {refresh_token: refreshToken} = req.body
     const userId = await redisClient.get(refreshToken)
-    const token = jwt.sign({user: userId}, configs.JWT_SECRET, {expiresIn: '15m'})
+    const {rows} = await pg.query(`select * from users where id = $1`, [userId])
+    const [user] = rows
+    const token = jwt.sign({user: user}, configs.JWT_SECRET, {expiresIn: '15m'})
     res.status(200).send({jwt: token})
  } catch(e) { return next(e) }
 }

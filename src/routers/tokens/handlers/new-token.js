@@ -21,7 +21,7 @@ export default async (req, res, next) => {
 
     if (match) {
       // create tokens
-      const token = jwt.sign({user: user.id}, configs.JWT_SECRET, {expiresIn: '15m'})
+      const token = jwt.sign({user: user}, configs.JWT_SECRET, {expiresIn: '15m'})
       const refreshToken = randToken.generate(64)
 
       // store refresh token to redis that expires in a week
