@@ -1,18 +1,14 @@
-import {Router} from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import randToken from 'rand-token'
-import configs from '../configs'
-import pg from '../data/postgres'
-import redis from '../data/redis'
-
-const router = Router()
+import configs from '../../../configs'
+import pg from '../../../data/postgres'
+import redis from '../../../data/redis'
 
 // connect to redis
 const redisClient = redis()
 
-// authenticate user [POST /tokens]
-router.post('/', async (req, res, next) => {
+ export default async (req, res, next) => {
   const {email = '', password = ''} = req.body
 
   // verify email and password
@@ -34,6 +30,4 @@ router.post('/', async (req, res, next) => {
       res.status(201).send({jwt: token, refresh_token: refreshToken})
     } else res.sendStatus(401)
   } catch(e) { return next(e) }
-})
-
-export default router
+}
