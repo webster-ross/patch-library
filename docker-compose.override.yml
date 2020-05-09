@@ -13,6 +13,8 @@ services:
       PG_URI: postgres://postgres@db/patch
       REDIS_URI: redis://cache
       JWT_SECRET: secret
+      MAX_CHECK_OUTS: 3
+      MAX_OVER_DUE: 0
     command: npm run serve:dev
   db:
     ports:

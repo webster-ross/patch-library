@@ -10,6 +10,8 @@ services:
       PG_URI: ${PG_URI}
       REDIS_URI: ${REDIS_URI}
       JWT_SECRET: ${JWT_SECRET}
+      MAX_CHECK_OUTS: ${MAX_CHECK_OUTS}
+      MAX_OVER_DUE: ${MAX_OVER_DUE}
     command: npm run serve
   db:
     environment:
