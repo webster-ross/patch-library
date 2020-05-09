@@ -2,21 +2,27 @@
   "name": "patch",
   "version": "1.0.0",
   "scripts": {
+    "build": "babel src -d dist",
     "serve:dev": "nodemon --exec babel-node src/index",
     "serve": "npm start",
-    "build": "babel src -d dist",
     "prestart": "npm run build",
-    "start": "node dist/index"
+    "start": "node dist/index",
+    "knex": "babel-node node_modules/.bin/knex --knexfile=src/data/knexfile.js",
+    "migrate:make": "npm run knex migrate:make",
+    "migrate:latest": "npm run knex migrate:latest",
+    "migrate:rollback": "npm run knex migrate:rollback"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^3.22.0"
+    "helmet": "^3.22.0",
+    "pg": "^8.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
+    "knex": "^0.21.1",
     "nodemon": "^2.0.3"
   }
 }

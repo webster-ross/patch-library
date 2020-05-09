@@ -1,4 +1,5 @@
 export default {
-  NODE_ENV: process.env.NODE_ENV || 'development',
-  PORT: process.env.PORT || 3000
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT,
+  PG_URI: process.env.PG_URI
 }
