@@ -4,9 +4,18 @@ services:
     build: .
     volumes:
       - .:/app
+      - /app/node_modules
     ports:
       - 3000:3000
     environment:
       NODE_ENV: development
       PORT: 3000
+      PG_URI: postgres://postgres@db/patch
     command: npm run serve:dev
+  db:
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: patch
+      POSTGRES_HOST_AUTH_METHOD: trust

@@ -2,3 +2,7 @@ version: '3'
 services:
   api:
     image: patch:latest
+    depends_on:
+      - db
+  db:
+    image: postgres

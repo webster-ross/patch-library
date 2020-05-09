@@ -3,8 +3,14 @@ services:
   api:
     build: .
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
     environment:
       NODE_ENV: production
-      PORT: 3000
+      PORT: ${PORT}
+      PG_URI: ${PG_URI}
     command: npm run serve
+  db:
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PWD}
+      POSTGRES_DB: ${PG_DB}
