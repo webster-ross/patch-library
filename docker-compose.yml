@@ -6,3 +6,5 @@ services:
       - db
   db:
     image: postgres
+  cache:
+    image: redis

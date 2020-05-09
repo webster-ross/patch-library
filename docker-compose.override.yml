@@ -11,6 +11,8 @@ services:
       NODE_ENV: development
       PORT: 3000
       PG_URI: postgres://postgres@db/patch
+      REDIS_URI: redis://cache
+      JWT_SECRET: secret
     command: npm run serve:dev
   db:
     ports:

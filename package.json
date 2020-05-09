@@ -13,15 +13,19 @@
     "migrate:rollback": "npm run knex migrate:rollback"
   },
   "dependencies": {
+    "async-redis": "^1.1.7",
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
-    "pg": "^8.1.0"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.1.0",
+    "rand-token": "^1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@babel/preset-env": "^7.9.6",
     "faker": "^4.1.0",
     "knex": "^0.21.1",
