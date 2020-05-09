@@ -1,6 +1,7 @@
 import {Router} from 'express'
+import {authRoute} from '../middleware'
 import {refreshTokenValidator} from './validators'
-import {newTokenHandler, refreshTokenHandler} from './handlers'
+import {newTokenHandler, refreshTokenHandler, invalidateTokenHandler} from './handlers'
 
 const router = Router()
 
@@ -9,5 +10,8 @@ router.post('/', newTokenHandler)
 
 // refresh auth token [POST /tokens/refresh]
 router.post('/refresh', refreshTokenValidator, refreshTokenHandler)
+
+// invalidate refresh token [DELETE /tokens]
+router.delete('/', authRoute, refreshTokenValidator, invalidateTokenHandler)
 
 export default router

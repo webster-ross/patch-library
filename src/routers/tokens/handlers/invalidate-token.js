@@ -1,6 +1,4 @@
-import jwt from 'jsonwebtoken'
 import {validationResult} from 'express-validator'
-import configs from '../../../configs'
 import redis from '../../../data/redis'
 
 // connect to redis
@@ -13,11 +11,12 @@ export default async (req, res, next) => {
     return res.status(400).send({errors: errors.array()})
   }
 
-  // create new jwt token
+  // delete refresh token
   try {
     const {refresh_token: refreshToken} = req.body
-    const userId = await redisClient.get(refreshToken)
-    const token = jwt.sign({user: userId}, configs.JWT_SECRET, {expiresIn: '15m'})
-    res.status(200).send({jwt: token})
- } catch(e) { return next(e) }
+    const user = await redisClient.get(refreshToken)
+    if (user != req.user) return res.sendStatus(401)
+    await redisClient.del(refreshToken)
+    res.sendStatus(204)
+  } catch(e) { return next(e) }
 }

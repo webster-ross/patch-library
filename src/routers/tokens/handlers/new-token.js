@@ -8,7 +8,7 @@ import redis from '../../../data/redis'
 // connect to redis
 const redisClient = redis()
 
- export default async (req, res, next) => {
+export default async (req, res, next) => {
   const {email = '', password = ''} = req.body
 
   // verify email and password
