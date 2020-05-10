@@ -20,7 +20,7 @@ export default async (req, res, next) => {
     const userId = await redisClient.get(refreshToken)
     const {rows} = await pg.query(`select * from users where id = $1`, [userId])
     const [user] = rows
-    const token = jwt.sign({user: user}, configs.JWT_SECRET, {expiresIn: '15m'})
-    res.status(200).send({jwt: token})
+    const token = jwt.sign({user: user, iat: Date.now()}, configs.JWT_SECRET, {expiresIn: '15m'})
+    res.status(201).send({jwt: token})
  } catch(e) { return next(e) }
 }

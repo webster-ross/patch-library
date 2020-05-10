@@ -11,7 +11,7 @@
     "migrate:make": "npm run knex migrate:make",
     "migrate:latest": "npm run knex migrate:latest",
     "migrate:rollback": "npm run knex migrate:rollback",
-    "test": "npm run migrate:latest && jest",
+    "test": "npm run migrate:latest && jest --forceExit",
     "test:watch": "npm run test -- --watchAll"
   },
   "dependencies": {
