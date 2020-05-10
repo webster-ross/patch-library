@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: test
+      PORT: 3000
+      PG_URI: postgres://postgres@db/patch
+      REDIS_URI: redis://cache
+      JWT_SECRET: secret
+      MAX_CHECK_OUTS: 3
+      MAX_OVER_DUE: 0
+    command: npm run test:watch
+  db:
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: patch
+      POSTGRES_HOST_AUTH_METHOD: trust
