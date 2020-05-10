@@ -7,6 +7,7 @@ import {
   getOverdueBooksHandler,
   checkoutBookHandler,
   returnBookHandler,
+  getCheckedOutBooksHandler
 } from './handlers'
 
 const router = Router()
@@ -25,5 +26,8 @@ router.post('/:isbn/checkout', authRoute({user: 1, librarian: 1}), checkoutBookH
 
 // return checked out book [DELETE /books/:isbn/checkout]
 router.delete('/:isbn/checkout', authRoute({user: 1, librarian: 1}), returnBookHandler)
+
+// get checked out books [GET /books/checkout]
+router.get('/checkout', authRoute({user: 1, librarian: 1}), getCheckedOutBooksHandler)
 
 export default router
