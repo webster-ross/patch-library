@@ -10,7 +10,7 @@ export default async (req, res, next) => {
     const {rows} = await pg.query(`delete from books where id = $1
                                    returning *`, [bookId])
     const [book] = rows
-    book ? res.status(201).send(book) : res.sendStatus(404)
+    book ? res.status(200).send(book) : res.sendStatus(404)
   }
   catch(e) { return next(e) }
 }
