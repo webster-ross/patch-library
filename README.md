@@ -3,12 +3,12 @@
 ### Usage
 Start service on port 3000:
 ``` 
-$ docker-comose up
+$ docker-compose up
 ```
 
 Stop service:
 ``` 
-$ docker-comose down
+$ docker-compose down
 ```
 
 ### Endpoints
